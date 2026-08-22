@@ -200,9 +200,10 @@ h1 {
   min-height: 42px;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   border: 1px solid #034eaa;
   border-radius: 999px;
-  padding: 0 20px;
+  padding: 0 18px 0 6px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(128, 215, 255, 0.95) 12%, #1678d6 52%, #0057bb 100%);
   box-shadow:
@@ -227,6 +228,16 @@ h1 {
 .button:hover {
   filter: brightness(1.04);
   transform: translateY(-1px);
+}
+
+.button .contact-icon {
+  width: 30px;
+  height: 30px;
+  border-color: rgba(255, 255, 255, 0.72);
+}
+
+.button.secondary .contact-icon {
+  border-color: #034eaa;
 }
 
 .signal-board {

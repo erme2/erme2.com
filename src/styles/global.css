@@ -164,8 +164,9 @@ h1 {
   min-height: 46px;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   border: 1px solid var(--ink);
-  padding: 0 18px;
+  padding: 0 16px 0 8px;
   background: var(--ink);
   color: #fff;
   font-weight: 750;
@@ -180,6 +181,19 @@ h1 {
 
 .button:hover {
   transform: translateY(-1px);
+}
+
+.button .contact-icon {
+  width: 28px;
+  height: 28px;
+  border-color: currentColor;
+  background: rgba(255, 255, 255, 0.14);
+  color: inherit;
+}
+
+.button.secondary .contact-icon {
+  background: var(--ink);
+  color: var(--panel);
 }
 
 .signal-board {
