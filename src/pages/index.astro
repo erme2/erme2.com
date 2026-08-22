@@ -1,5 +1,6 @@
 ---
-import "../styles/global.css";
+import defaultThemeUrl from "../styles/global.css?url";
+import cheetahThemeUrl from "../styles/cheetah.css?url";
 
 const projects = [
   {
@@ -38,7 +39,16 @@ const projects = [
       name="description"
       content="Arduino Di Giosia is a senior TypeScript and Node.js engineer, tech lead, and engineering leader based in Nottingham."
     />
+    <link id="theme-stylesheet" rel="stylesheet" href={defaultThemeUrl} />
     <title>Arduino Di Giosia | Senior Engineer & Engineering Leader</title>
+    <script is:inline define:vars={{ cheetahThemeUrl }}>
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("theme") === "cheetah") {
+        document
+          .getElementById("theme-stylesheet")
+          ?.setAttribute("href", cheetahThemeUrl);
+      }
+    </script>
   </head>
   <body>
     <header class="topbar">

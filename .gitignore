@@ -4,3 +4,5 @@ dist
 .DS_Store
 *.log
 Arduino_Di_Giosia_CV_*.docx
+.env
+env
