@@ -27,3 +27,10 @@ Configure these repository secrets before running it:
 - `HOSTINGER_SSH_PRIVATE_KEY`: private key with write access to the hosting account.
 - `HOSTINGER_TARGET_DIR`: remote document root, usually something like `/home/USER/domains/erme2.com/public_html`.
 - `HOSTINGER_PORT`: optional SSH port. Defaults to `22` when omitted.
+
+## License
+
+Code in this repository is licensed under the MIT License.
+
+Personal content, text, images, and branding are not licensed for reuse unless
+explicitly stated.

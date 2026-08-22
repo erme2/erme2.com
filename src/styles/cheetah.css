@@ -123,9 +123,15 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 8px;
+  gap: 4px;
   color: #293647;
   font-size: 0.88rem;
+}
+
+.nav-links a + a::before {
+  margin-right: 8px;
+  color: rgba(41, 54, 71, 0.46);
+  content: "|";
 }
 
 .nav-links a {
@@ -604,7 +610,7 @@ h2 {
 
   .nav-links {
     justify-content: flex-start;
-    gap: 6px;
+    gap: 4px;
     font-size: 0.84rem;
   }
 
