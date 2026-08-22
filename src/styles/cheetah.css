@@ -150,16 +150,18 @@ a {
 }
 
 .eyebrow {
-  display: inline-flex;
+  display: inline-block;
+  max-width: 38rem;
   margin: 0 0 18px;
   border: 1px solid rgba(50, 74, 101, 0.28);
-  border-radius: 999px;
+  border-radius: 18px;
   padding: 6px 12px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(219, 226, 236, 0.82));
   color: #32506f;
   font-size: 0.78rem;
   font-weight: 700;
+  line-height: 1.35;
 }
 
 h1,
@@ -597,6 +599,13 @@ h2 {
 
   .hero {
     padding-top: 48px;
+  }
+
+  .eyebrow {
+    max-width: 30ch;
+    border-radius: 14px;
+    padding: 7px 10px;
+    font-size: 0.72rem;
   }
 
   h1 {
