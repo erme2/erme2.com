@@ -602,7 +602,7 @@ h2 {
   }
 
   .eyebrow {
-    max-width: 30ch;
+    max-width: min(100%, 36ch);
     border-radius: 14px;
     padding: 7px 10px;
     font-size: 0.72rem;
