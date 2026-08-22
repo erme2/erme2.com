@@ -41,9 +41,19 @@ jobs:
           chmod 600 ~/.ssh/hostinger
           ssh-keyscan -p "$HOSTINGER_PORT" "${{ secrets.HOSTINGER_HOST }}" >> ~/.ssh/known_hosts
 
+      - name: Test SSH authentication
+        run: |
+          ssh \
+            -i ~/.ssh/hostinger \
+            -p "$HOSTINGER_PORT" \
+            -o BatchMode=yes \
+            -o IdentitiesOnly=yes \
+            "${{ secrets.HOSTINGER_USERNAME }}@${{ secrets.HOSTINGER_HOST }}" \
+            "pwd"
+
       - name: Deploy static files
         run: |
           rsync -az --delete \
-            -e "ssh -i ~/.ssh/hostinger -p $HOSTINGER_PORT" \
+            -e "ssh -i ~/.ssh/hostinger -p $HOSTINGER_PORT -o BatchMode=yes -o IdentitiesOnly=yes" \
             dist/ \
             "${{ secrets.HOSTINGER_USERNAME }}@${{ secrets.HOSTINGER_HOST }}:${{ secrets.HOSTINGER_TARGET_DIR }}/"
