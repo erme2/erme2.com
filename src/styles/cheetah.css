@@ -576,6 +576,11 @@ h2 {
   padding: 28px 0 46px;
   color: #596777;
   font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.footer span {
+  display: block;
 }
 
 @media (max-width: 900px) {
@@ -642,5 +647,11 @@ h2 {
 
   .contact-band {
     padding: 24px;
+  }
+
+  .footer {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+    font-size: 0.82rem;
+    line-height: 1.45;
   }
 }

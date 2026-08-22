@@ -1,7 +1,7 @@
 ---
 import defaultThemeUrl from "../styles/global.css?url";
 import cheetahThemeUrl from "../styles/cheetah.css?url";
-import fnThemeUrl from "../styles/fn.css?url";
+import darkThemeUrl from "../styles/dark.css?url";
 
 const projects = [
   {
@@ -38,19 +38,17 @@ const projects = [
     <meta name="viewport" content="width=device-width" />
     <meta
       name="description"
-      content="Arduino Di Giosia is a senior TypeScript and Node.js engineer, tech lead, and engineering leader based in Nottingham."
+      content="Arduino Di Giosia is a tech lead, senior TypeScript and PHP engineer, and engineering leader based in Nottingham."
     />
     <link id="theme-stylesheet" rel="stylesheet" href={defaultThemeUrl} />
     <title>Arduino Di Giosia | Tech Lead & Senior Engineer</title>
-    <script is:inline define:vars={{ cheetahThemeUrl, fnThemeUrl }}>
+    <script is:inline define:vars={{ cheetahThemeUrl, darkThemeUrl }}>
       const params = new URLSearchParams(window.location.search);
-      const themes = {
-        cheetah: cheetahThemeUrl,
-        fn: fnThemeUrl
-      };
-      const selectedTheme = themes[params.get("theme")];
-      if (selectedTheme) {
-        document.getElementById("theme-stylesheet")?.setAttribute("href", selectedTheme);
+      const stylesheet = document.getElementById("theme-stylesheet");
+      if (params.get("theme") === "cheetah") {
+        stylesheet?.setAttribute("href", cheetahThemeUrl);
+      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        stylesheet?.setAttribute("href", darkThemeUrl);
       }
     </script>
   </head>

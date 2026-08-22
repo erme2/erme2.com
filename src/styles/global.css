@@ -464,6 +464,11 @@ h2 {
   padding: 28px 0 46px;
   color: var(--muted);
   font-size: 0.93rem;
+  overflow-wrap: anywhere;
+}
+
+.footer span {
+  display: block;
 }
 
 @media (max-width: 900px) {
@@ -523,5 +528,11 @@ h2 {
 
   .signal-board::before {
     inset: 12px -8px -8px 8px;
+  }
+
+  .footer {
+    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+    font-size: 0.82rem;
+    line-height: 1.45;
   }
 }
