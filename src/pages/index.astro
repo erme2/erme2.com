@@ -1,6 +1,7 @@
 ---
 import defaultThemeUrl from "../styles/global.css?url";
 import cheetahThemeUrl from "../styles/cheetah.css?url";
+import fnThemeUrl from "../styles/fn.css?url";
 
 const projects = [
   {
@@ -41,12 +42,15 @@ const projects = [
     />
     <link id="theme-stylesheet" rel="stylesheet" href={defaultThemeUrl} />
     <title>Arduino Di Giosia | Tech Lead & Senior Engineer</title>
-    <script is:inline define:vars={{ cheetahThemeUrl }}>
+    <script is:inline define:vars={{ cheetahThemeUrl, fnThemeUrl }}>
       const params = new URLSearchParams(window.location.search);
-      if (params.get("theme") === "cheetah") {
-        document
-          .getElementById("theme-stylesheet")
-          ?.setAttribute("href", cheetahThemeUrl);
+      const themes = {
+        cheetah: cheetahThemeUrl,
+        fn: fnThemeUrl
+      };
+      const selectedTheme = themes[params.get("theme")];
+      if (selectedTheme) {
+        document.getElementById("theme-stylesheet")?.setAttribute("href", selectedTheme);
       }
     </script>
   </head>
@@ -75,9 +79,9 @@ const projects = [
           <p class="eyebrow">Tech Lead · Senior TypeScript/PHP</p>
           <h1>Hands-on engineering leadership.</h1>
           <p class="lead">
-            I build and modernise web platforms, APIs, payments systems, and business-critical tooling:
-            close to the code, credible with engineers, useful to product and leadership, and comfortable
-            managing teams when that is what the work needs.
+            I build and modernise web platforms, APIs, payment systems, and business-critical tooling:
+            close to the code, credible with engineers, effective with product and leadership, and comfortable
+            managing teams.
           </p>
           <div class="cta-row" aria-label="Contact and profile links">
             <a class="button" href="mailto:me@erme2.com">
@@ -114,13 +118,13 @@ const projects = [
               <span>weekly clicks handled by affiliate tracking platforms</span>
             </div>
             <div class="metric">
-              <strong>Too many</strong>
-              <span>tokens spent building and delivering this small website</span>
+              <strong>10 mins</strong>
+              <span>to build this website using Codex</span>
             </div>
           </div>
           <p class="positioning">
-            <strong>Positioning:</strong> tech lead, senior TypeScript, Node.js, and PHP engineer, and engineering
-            leader for teams that need pragmatic delivery discipline.
+            <strong>Positioning:</strong> tech lead, senior TypeScript and PHP engineer, and engineering
+            leader with devops architecture experience and the ability to build multi-region platforms.
           </p>
         </aside>
       </div>
@@ -139,7 +143,7 @@ const projects = [
           <div class="pill-grid">
             <div class="pill">
               <strong>Modern product engineering</strong>
-              <span>TypeScript, Node.js, NestJS, React, REST APIs, payments, subscriptions, and integrations.</span>
+              <span>TypeScript, PHP, React, REST APIs, payments, subscriptions, and integrations.</span>
             </div>
             <div class="pill">
               <strong>Leadership with code credibility</strong>
@@ -147,7 +151,7 @@ const projects = [
             </div>
             <div class="pill">
               <strong>Operational discipline</strong>
-              <span>CI/CD, testing strategy, regulated change control, production support, Docker, Kubernetes, and AWS.</span>
+              <span>CI/CD, testing strategy, regulated change control, production support, Docker, Kubernetes, AWS, and multi-region architecture.</span>
             </div>
           </div>
         </div>
