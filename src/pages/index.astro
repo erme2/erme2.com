@@ -27,6 +27,41 @@ const projects = [
     href: "https://github.com/erme2/Latte",
     body:
       "A source-available React and TypeScript template for organisation-specific applications powered by Pane, shared authentication, and Docker-based local development."
+  },
+  {
+    name: "erme2.com",
+    year: "2026",
+    label: "Open personal site",
+    href: "https://github.com/erme2/erme2.com",
+    body:
+      "This website: a public Astro project used as a small but visible proof of an AI-assisted engineering workflow, from issue to review to deployment."
+  }
+];
+
+const workflowLinks = [
+  {
+    label: "Coordination board",
+    href: "https://github.com/users/erme2/projects/7/views/1"
+  },
+  {
+    label: "Yaup",
+    href: "https://github.com/erme2/Yaup"
+  },
+  {
+    label: "Pane",
+    href: "https://github.com/erme2/Pane"
+  },
+  {
+    label: "Latte",
+    href: "https://github.com/erme2/Latte"
+  },
+  {
+    label: "erme2.com",
+    href: "https://github.com/erme2/erme2.com"
+  },
+  {
+    label: "Hostinger",
+    href: "https://www.hostinger.com"
   }
 ];
 ---
@@ -66,6 +101,7 @@ const projects = [
           <a href="#profile">Profile</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
+          <a href="#workflow">Workflow</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -137,7 +173,10 @@ const projects = [
             <p>
               My strongest roles sit between individual contribution and engineering management. I can design
               and build systems myself, but I can also stabilise teams, make delivery predictable, mentor
-              engineers, and communicate clearly with product, finance, and executive stakeholders.
+              engineers, and communicate clearly with product, finance, and executive stakeholders. I treat
+              languages and frameworks as tools: PHP is a long-standing strength, Node and React became core
+              skills in recent years, and I adapt the stack to the problem instead of forcing every problem
+              through the same tool.
             </p>
           </div>
 
@@ -147,12 +186,20 @@ const projects = [
               <span>TypeScript, PHP, React, REST APIs, payments, subscriptions, and integrations.</span>
             </div>
             <div class="pill">
+              <strong>Flexible technical judgment</strong>
+              <span>Choosing the right tool for the job, learning quickly when the needs change, and avoiding one-size-fits-all engineering.</span>
+            </div>
+            <div class="pill">
               <strong>Leadership with code credibility</strong>
               <span>Team structure, mentoring, hiring, delivery planning, one-to-ones, and technical direction.</span>
             </div>
             <div class="pill">
               <strong>Operational discipline</strong>
               <span>CI/CD, testing strategy, regulated change control, production support, Docker, Kubernetes, AWS, and multi-region architecture.</span>
+            </div>
+            <div class="pill">
+              <strong>Priority focus</strong>
+              <span>Keeping teams focused on the main constraints so the best working product gets shipped in the shortest practical time.</span>
             </div>
           </div>
         </div>
@@ -215,8 +262,8 @@ const projects = [
             <h2>Personal projects</h2>
             <p>
               Current public repositories focus on AI-assisted delivery governance, controlled data access,
-              and reusable application foundations. Yaup, Pane, and Latte are designed to work as a practical
-              stack for safer agent-assisted software delivery.
+              reusable application foundations, and the public site itself. Yaup, Pane, Latte, and erme2.com
+              are designed to work as a practical stack for safer agent-assisted software delivery.
             </p>
           </div>
 
@@ -234,6 +281,83 @@ const projects = [
                 </article>
               ))
             }
+          </div>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <div class="site-shell">
+          <div class="section-title">
+            <h2>Open AI-assisted engineering workflow</h2>
+            <p>
+              The work behind this CV is now visible in public repositories: the planning system, the control
+              plane, the application template, the project board, the issues, this website, and the tool
+              connectors used to operate them. The point is not that AI writes code on its own; it is that
+              human judgment, small issues, review loops, MCP tools, and automated validation can be
+              orchestrated into a repeatable delivery system.
+            </p>
+          </div>
+
+          <div class="workflow-grid">
+            <article class="workflow-card">
+              <p class="year">1</p>
+              <h3>Plan the work in public</h3>
+              <p>
+                Ideas become GitHub issues and project-board items. Each issue is small enough to review, link,
+                test, and trace back to a concrete change.
+              </p>
+            </article>
+            <article class="workflow-card">
+              <p class="year">2</p>
+              <h3>Use Yaup as the guardrail</h3>
+              <p>
+                Yaup coordinates agent work with shared rules, planning gates, validation commands, and review
+                conventions across the repositories.
+              </p>
+            </article>
+            <article class="workflow-card">
+              <p class="year">3</p>
+              <h3>Automate through MCP tools</h3>
+              <p>
+                Connected tools let the workflow operate GitHub, hosting, deployments, project metadata, and
+                other services directly from the engineering conversation.
+              </p>
+            </article>
+            <article class="workflow-card">
+              <p class="year">4</p>
+              <h3>Build reusable foundations</h3>
+              <p>
+                Pane provides the controlled data-access layer. Latte gives application teams a React and
+                TypeScript starting point that plugs into that control plane.
+              </p>
+            </article>
+            <article class="workflow-card">
+              <p class="year">5</p>
+              <h3>Publish the evidence</h3>
+              <p>
+                Pull requests, commits, issues, and this site show the actual workflow: quick iteration,
+                explicit review, passing validation, and open-source artefacts.
+              </p>
+            </article>
+          </div>
+
+          <div class="workflow-map">
+            <div>
+              <h3>A few focused days, one orchestrated system</h3>
+              <p>
+                Together we used Codex as an engineering partner, but kept the system legible: GitHub for
+                coordination, MCP tools for action, Hostinger for hosting operations, Yaup for governance,
+                Pane and Latte for the product architecture, and erme2.com as the public narrative layer.
+                More tools can be added the same way, exposing new services without changing the core workflow.
+              </p>
+            </div>
+            <div class="workflow-links" aria-label="Workflow links">
+              {
+                workflowLinks.map((link) => (
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+                ))
+              }
+            </div>
           </div>
         </div>
       </section>
@@ -263,7 +387,7 @@ const projects = [
             </div>
             <div class="skill-group">
               <h3>Leadership</h3>
-              <p>Technical direction, mentoring, hiring, stakeholder communication, delivery planning, and AI workflow governance.</p>
+              <p>Technical direction, mentoring, hiring, stakeholder communication, delivery planning, priority focus, and AI workflow governance.</p>
             </div>
           </div>
         </div>
@@ -296,5 +420,53 @@ const projects = [
     <footer class="site-shell footer">
       <span>Arduino Di Giosia · Tech lead and senior engineer · TypeScript, React, PHP</span>
     </footer>
+    <script is:inline>
+      const navLinks = Array.from(document.querySelectorAll(".nav-links a[href^='#']"));
+      const sections = navLinks
+        .map((link) => {
+          const target = document.querySelector(link.getAttribute("href"));
+
+          return target ? { link, target } : null;
+        })
+        .filter(Boolean);
+
+      const setActiveSection = (id) => {
+        sections.forEach(({ link }) => {
+          const isActive = link.getAttribute("href") === `#${id}`;
+          link.classList.toggle("is-active", isActive);
+
+          if (isActive) {
+            link.setAttribute("aria-current", "true");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      };
+
+      const activeSectionFromScroll = () => {
+        const offset = window.innerHeight * 0.32;
+        const current = sections
+          .map(({ target }) => ({
+            id: target.id,
+            top: target.getBoundingClientRect().top
+          }))
+          .filter((section) => section.top <= offset)
+          .at(-1);
+
+        if (current) {
+          setActiveSection(current.id);
+        }
+      };
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          const id = link.getAttribute("href").slice(1);
+          setActiveSection(id);
+        });
+      });
+
+      activeSectionFromScroll();
+      window.addEventListener("scroll", activeSectionFromScroll, { passive: true });
+    </script>
   </body>
 </html>

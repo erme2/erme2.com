@@ -112,11 +112,23 @@ a {
 }
 
 .nav-links a {
+  padding: 2px 0;
   text-decoration: none;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.is-active {
   color: var(--ink);
+}
+
+.nav-links a.is-active {
+  background:
+    linear-gradient(
+      to top,
+      rgba(255, 241, 118, 0.82) 0 56%,
+      transparent 56% 100%
+    );
+  font-weight: 800;
 }
 
 .hero {
@@ -281,6 +293,7 @@ h1 {
 
 section {
   padding: 72px 0;
+  scroll-margin-top: 92px;
 }
 
 .section-title {
@@ -305,7 +318,7 @@ h2 {
 
 .pill-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 14px;
 }
 
@@ -357,7 +370,7 @@ h2 {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
 
@@ -379,6 +392,10 @@ h2 {
   background: #eef2ff;
 }
 
+.project:nth-child(4) {
+  background: #fff7ed;
+}
+
 .project p {
   color: #4a4d47;
 }
@@ -386,6 +403,72 @@ h2 {
 .project .year {
   color: var(--rust);
   font-weight: 800;
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+}
+
+.workflow-card {
+  border-top: 3px solid var(--ink);
+  padding-top: 18px;
+}
+
+.workflow-card h3 {
+  font-size: 1rem;
+}
+
+.workflow-card p {
+  color: var(--muted);
+}
+
+.workflow-card .year {
+  color: var(--rust);
+  font-weight: 800;
+}
+
+.workflow-map {
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(280px, 0.42fr);
+  gap: 36px;
+  align-items: start;
+  margin-top: 34px;
+  border: 1px solid var(--ink);
+  background: var(--panel);
+  padding: 26px;
+}
+
+.workflow-map h3 {
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+}
+
+.workflow-map p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.workflow-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.workflow-links a {
+  border: 1px solid var(--ink);
+  padding: 7px 11px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.workflow-links a:hover {
+  background: var(--ink);
+  color: var(--panel);
 }
 
 .skills {
@@ -492,8 +575,13 @@ h2 {
 
   .pill-grid,
   .project-grid,
+  .workflow-grid,
   .skills {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .workflow-map {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -525,6 +613,7 @@ h2 {
   .metrics,
   .pill-grid,
   .project-grid,
+  .workflow-grid,
   .skills {
     grid-template-columns: 1fr;
   }

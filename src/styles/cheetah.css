@@ -141,9 +141,17 @@ a {
   text-decoration: none;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.is-active {
   border-color: rgba(56, 81, 110, 0.32);
   background: rgba(255, 255, 255, 0.62);
+}
+
+.nav-links a.is-active {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(203, 229, 255, 0.95));
+  color: #0b56aa;
+  font-weight: 700;
 }
 
 .hero {
@@ -346,6 +354,7 @@ h1 {
 
 section {
   padding: 70px 0;
+  scroll-margin-top: 90px;
 }
 
 .section-title {
@@ -372,7 +381,7 @@ h2 {
 
 .pill-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 14px;
 }
 
@@ -443,7 +452,7 @@ h2 {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 18px;
 }
 
@@ -463,6 +472,11 @@ h2 {
 .project:nth-child(3) {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(224, 231, 255, 0.86));
+}
+
+.project:nth-child(4) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 237, 213, 0.86));
 }
 
 .project p {
@@ -491,6 +505,80 @@ h2 {
 }
 
 .project-link:hover {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(203, 229, 255, 0.95));
+}
+
+.workflow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
+}
+
+.workflow-card {
+  border-top: 2px solid rgba(0, 87, 187, 0.5);
+  padding-top: 18px;
+}
+
+.workflow-card h3 {
+  color: #142035;
+  font-size: 1rem;
+}
+
+.workflow-card p {
+  color: #526173;
+}
+
+.workflow-card .year {
+  color: #0057bb;
+  font-weight: 800;
+}
+
+.workflow-map {
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(280px, 0.42fr);
+  gap: 36px;
+  align-items: start;
+  margin-top: 34px;
+  border: 1px solid rgba(54, 70, 90, 0.34);
+  border-radius: 16px;
+  padding: 28px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(219, 227, 238, 0.86));
+  box-shadow: var(--shadow);
+}
+
+.workflow-map h3 {
+  margin-bottom: 10px;
+  color: #142035;
+  font-size: 1.15rem;
+}
+
+.workflow-map p {
+  margin-bottom: 0;
+  color: #526173;
+}
+
+.workflow-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.workflow-links a {
+  border: 1px solid rgba(55, 70, 90, 0.34);
+  border-radius: 999px;
+  padding: 7px 11px;
+  background:
+    linear-gradient(180deg, #fff 0%, #e9eef5 48%, #c5cedb 100%);
+  color: #243244;
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.86);
+}
+
+.workflow-links a:hover {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(203, 229, 255, 0.95));
 }
@@ -604,8 +692,13 @@ h2 {
 
   .pill-grid,
   .project-grid,
+  .workflow-grid,
   .skills {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .workflow-map {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -644,6 +737,7 @@ h2 {
   .metrics,
   .pill-grid,
   .project-grid,
+  .workflow-grid,
   .skills {
     grid-template-columns: 1fr;
   }
