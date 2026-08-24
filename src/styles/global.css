@@ -264,6 +264,13 @@ h1 {
   font-size: 0.86rem;
 }
 
+.metric a {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--accent-strong);
+  font-weight: 800;
+}
+
 .positioning {
   padding: 20px 22px 24px;
 }
