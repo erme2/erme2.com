@@ -17,6 +17,7 @@ const projects = [
     year: "2026",
     label: "Data-access control plane",
     href: "https://github.com/erme2/Pane",
+    demoHref: "https://pane.erme2.com",
     body:
       "A source-available Laravel control plane for authentication, organisation isolation, encrypted database connections, catalog discovery, and controlled CRUD."
   },
@@ -50,6 +51,10 @@ const workflowLinks = [
   {
     label: "Pane",
     href: "https://github.com/erme2/Pane"
+  },
+  {
+    label: "Pane demo",
+    href: "https://pane.erme2.com"
   },
   {
     label: "Latte",
@@ -276,7 +281,14 @@ const workflowLinks = [
                     <h3>{project.name}</h3>
                     <p><strong>{project.label}</strong></p>
                     <p>{project.body}</p>
-                    <a class="project-link" href={project.href} target="_blank" rel="noopener noreferrer">View repository</a>
+                    <div class="project-actions">
+                      <a class="project-link" href={project.href} target="_blank" rel="noopener noreferrer">View repository</a>
+                      {
+                        project.demoHref && (
+                          <a class="project-link project-link-live" href={project.demoHref} target="_blank" rel="noopener noreferrer">Live demo</a>
+                        )
+                      }
+                    </div>
                   </div>
                 </article>
               ))
