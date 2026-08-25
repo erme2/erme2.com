@@ -17,6 +17,7 @@ const projects = [
     year: "2026",
     label: "Data-access control plane",
     href: "https://github.com/erme2/Pane",
+    demoHref: "https://pane.erme2.com",
     body:
       "A source-available Laravel control plane for authentication, organisation isolation, encrypted database connections, catalog discovery, and controlled CRUD."
   },
@@ -52,6 +53,10 @@ const workflowLinks = [
     href: "https://github.com/erme2/Pane"
   },
   {
+    label: "Pane demo",
+    href: "https://pane.erme2.com"
+  },
+  {
     label: "Latte",
     href: "https://github.com/erme2/Latte"
   },
@@ -73,10 +78,10 @@ const workflowLinks = [
     <meta name="viewport" content="width=device-width" />
     <meta
       name="description"
-      content="Arduino Di Giosia is a tech lead, senior TypeScript and PHP engineer, and engineering leader based in Nottingham."
+      content="Arduino Di Giosia is an engineering leader and senior TypeScript and PHP engineer based in Nottingham."
     />
     <link id="theme-stylesheet" rel="stylesheet" href={defaultThemeUrl} />
-    <title>Arduino Di Giosia | Tech Lead & Senior Engineer</title>
+    <title>Arduino Di Giosia | Engineering Leader & Senior Engineer</title>
     <script is:inline define:vars={{ cheetahThemeUrl, darkThemeUrl }}>
       const params = new URLSearchParams(window.location.search);
       const stylesheet = document.getElementById("theme-stylesheet");
@@ -94,7 +99,7 @@ const workflowLinks = [
           <img class="mark" src="/images/arduino-di-giosia.png" alt="" aria-hidden="true" />
           <span>
             <strong>Arduino Di Giosia</strong>
-            <span>Tech Lead · Senior Engineer</span>
+            <span>Engineering Leader · Senior Engineer</span>
           </span>
         </a>
         <div class="nav-links">
@@ -110,7 +115,7 @@ const workflowLinks = [
     <main id="top">
       <div class="site-shell hero">
         <div>
-          <p class="eyebrow">Tech Lead · Senior TypeScript/PHP</p>
+          <p class="eyebrow">Engineering Leadership · Senior TypeScript/PHP</p>
           <h1>Hands-on engineering leadership.</h1>
           <p class="lead">
             I build and modernise web platforms, APIs, payment systems, and business-critical tooling:
@@ -129,6 +134,10 @@ const workflowLinks = [
             <a class="button secondary" href="https://linkedin.com/in/arduinodigiosia" target="_blank" rel="noopener noreferrer">
               <span class="contact-icon" aria-hidden="true">in</span>
               <span>LinkedIn</span>
+            </a>
+            <a class="button secondary" href="/cv/arduino-di-giosia.pdf" target="_blank" rel="noopener noreferrer">
+              <span class="contact-icon" aria-hidden="true">CV</span>
+              <span>Download CV (PDF)</span>
             </a>
           </div>
         </div>
@@ -152,16 +161,17 @@ const workflowLinks = [
               <span>weekly clicks handled by affiliate tracking platforms</span>
             </div>
             <div class="metric">
-              <strong>10 min</strong>
+              <strong>v1 in minutes</strong>
               <span>
-                built in 10 minutes with an AI-assisted engineering workflow.
+                first working version AI-generated from my CV, then iterated through issues, reviews, and deployments.
                 <a href="https://github.com/erme2/erme2.com" target="_blank" rel="noopener noreferrer">View repository</a>
               </span>
             </div>
           </div>
           <p class="positioning">
             <strong>Positioning:</strong> tech lead, senior TypeScript and PHP engineer, and engineering
-            leader with devops architecture experience and the ability to build multi-region platforms.
+            leader with devops architecture experience, fluent in AI-assisted delivery, and able to build
+            multi-region platforms.
           </p>
         </aside>
       </div>
@@ -232,7 +242,7 @@ const workflowLinks = [
             <article class="role">
               <div>
                 <h3>Engineer III · AJ Bell</h3>
-                <p class="role-meta">Manchester · Mar 2023 - Oct 2025</p>
+                <p class="role-meta">Manchester, hybrid · Mar 2023 - Oct 2025</p>
               </div>
               <ul>
                 <li>Developed customer-facing investment platform services across frontend and backend systems.</li>
@@ -276,7 +286,14 @@ const workflowLinks = [
                     <h3>{project.name}</h3>
                     <p><strong>{project.label}</strong></p>
                     <p>{project.body}</p>
-                    <a class="project-link" href={project.href} target="_blank" rel="noopener noreferrer">View repository</a>
+                    <div class="project-actions">
+                      <a class="project-link" href={project.href} target="_blank" rel="noopener noreferrer">View repository</a>
+                      {
+                        project.demoHref && (
+                          <a class="project-link project-link-live" href={project.demoHref} target="_blank" rel="noopener noreferrer">Live demo</a>
+                        )
+                      }
+                    </div>
                   </div>
                 </article>
               ))
@@ -290,11 +307,11 @@ const workflowLinks = [
           <div class="section-title">
             <h2>Open AI-assisted engineering workflow</h2>
             <p>
-              The work behind this CV is now visible in public repositories: the planning system, the control
-              plane, the application template, the project board, the issues, this website, and the tool
-              connectors used to operate them. The point is not that AI writes code on its own; it is that
-              human judgment, small issues, review loops, MCP tools, and automated validation can be
-              orchestrated into a repeatable delivery system.
+              AI is changing how software gets built, and I've built my working method around that rather than
+              waiting for it to settle. Everything below — the governance tooling, the review gates, the
+              repositories, this site — is a working demonstration, not a slide deck. The point is not that AI
+              writes code on its own; it is that human judgment, small issues, review loops, MCP tools, and
+              automated validation can be orchestrated into a repeatable delivery system.
             </p>
           </div>
 
@@ -303,8 +320,8 @@ const workflowLinks = [
               <p class="year">1</p>
               <h3>Plan the work in public</h3>
               <p>
-                Ideas become GitHub issues and project-board items. Each issue is small enough to review, link,
-                test, and trace back to a concrete change.
+                Ideas become GitHub issues and project-board items small enough to review, test, and trace back
+                to a concrete change.
               </p>
             </article>
             <article class="workflow-card">
@@ -312,7 +329,7 @@ const workflowLinks = [
               <h3>Use Yaup as the guardrail</h3>
               <p>
                 Yaup coordinates agent work with shared rules, planning gates, validation commands, and review
-                conventions across the repositories.
+                conventions across repositories.
               </p>
             </article>
             <article class="workflow-card">
@@ -320,23 +337,23 @@ const workflowLinks = [
               <h3>Automate through MCP tools</h3>
               <p>
                 Connected tools let the workflow operate GitHub, hosting, deployments, project metadata, and
-                other services directly from the engineering conversation.
+                other services from the engineering conversation.
               </p>
             </article>
             <article class="workflow-card">
               <p class="year">4</p>
               <h3>Build reusable foundations</h3>
               <p>
-                Pane provides the controlled data-access layer. Latte gives application teams a React and
-                TypeScript starting point that plugs into that control plane.
+                Pane provides the controlled data-access layer, while Latte gives React and TypeScript
+                applications a starting point that plugs into that control plane.
               </p>
             </article>
             <article class="workflow-card">
               <p class="year">5</p>
               <h3>Publish the evidence</h3>
               <p>
-                Pull requests, commits, and issues in the Pane, Latte, and Yaup repositories show the actual
-                workflow: quick iteration, explicit review, passing validation, and open-source artefacts.
+                Pull requests, commits, and issues in the Pane, Latte, and Yaup repositories show iteration,
+                explicit review, passing validation, and open-source artefacts.
               </p>
             </article>
           </div>
@@ -347,9 +364,11 @@ const workflowLinks = [
               <p>
                 Pane and Latte are the more complex product work using this workflow: GitHub for issues and
                 coordination, MCP tools for action, Hostinger for hosting operations, Yaup for governance, and
-                Codex as the engineering partner inside the loop. erme2.com is different: it is a quick public
-                site built in about 10 minutes from an updated CV, then used here to explain the system. More
-                tools can be added the same way, exposing new services without changing the core workflow.
+                coding agents (Codex, Claude Code, and others) as engineering partners inside the loop.
+                erme2.com is different: it started as an AI-generated first draft from an updated CV, and it
+                shows the point of the workflow — AI gets you to a working baseline fast, and disciplined
+                iteration makes it good. More tools can be added the same way, exposing new services without
+                changing the core workflow.
               </p>
             </div>
             <div class="workflow-links" aria-label="Workflow links">
@@ -376,7 +395,7 @@ const workflowLinks = [
           <div class="skills">
             <div class="skill-group">
               <h3>Backend</h3>
-              <p>TypeScript, PHP, NestJS, Laravel, REST API design, payments, subscriptions, integrations, Symfony, Zend.</p>
+              <p>TypeScript, PHP, NestJS, Laravel, REST API design, payments, subscriptions, integrations, Symfony.</p>
             </div>
             <div class="skill-group">
               <h3>Frontend</h3>
@@ -413,13 +432,17 @@ const workflowLinks = [
               <span class="contact-icon" aria-hidden="true">in</span>
               <span>linkedin.com/in/arduinodigiosia</span>
             </a>
+            <a href="/cv/arduino-di-giosia.pdf" target="_blank" rel="noopener noreferrer">
+              <span class="contact-icon" aria-hidden="true">CV</span>
+              <span>Download CV (PDF)</span>
+            </a>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-shell footer">
-      <span>Arduino Di Giosia · Tech lead and senior engineer · TypeScript, React, PHP</span>
+      <span>Arduino Di Giosia · Engineering leader and senior engineer · TypeScript, React, PHP</span>
     </footer>
     <script is:inline>
       const navLinks = Array.from(document.querySelectorAll(".nav-links a[href^='#']"));

@@ -488,10 +488,16 @@ h2 {
   font-weight: 800;
 }
 
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
 .project-link {
   display: inline-flex;
   width: fit-content;
-  margin-top: 6px;
   border: 1px solid rgba(55, 70, 90, 0.34);
   border-radius: 999px;
   padding: 5px 11px;
@@ -507,6 +513,13 @@ h2 {
 .project-link:hover {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(203, 229, 255, 0.95));
+}
+
+.project-link-live {
+  border-color: rgba(0, 87, 187, 0.42);
+  background:
+    linear-gradient(180deg, rgba(235, 248, 255, 1), rgba(186, 225, 255, 0.95));
+  color: #004fae;
 }
 
 .workflow-grid {
