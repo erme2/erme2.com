@@ -54,6 +54,8 @@ jobs:
       - name: Deploy static files
         run: |
           rsync -az --delete \
+            --exclude='/pane/***' \
+            --exclude='/latte/***' \
             -e "ssh -i ~/.ssh/hostinger -p $HOSTINGER_PORT -o BatchMode=yes -o IdentitiesOnly=yes" \
             dist/ \
             "${{ secrets.HOSTINGER_USERNAME }}@${{ secrets.HOSTINGER_HOST }}:${{ secrets.HOSTINGER_TARGET_DIR }}/"
