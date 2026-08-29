@@ -28,6 +28,14 @@ Configure these repository secrets before running it:
 - `HOSTINGER_TARGET_DIR`: remote document root, usually something like `/home/USER/domains/erme2.com/public_html`.
 - `HOSTINGER_PORT`: optional SSH port. Defaults to `22` when omitted.
 
+Optional public analytics variables:
+
+- `PUBLIC_POSTHOG_KEY`: PostHog project token from the browser/Web SDK install snippet.
+- `PUBLIC_POSTHOG_HOST`: PostHog capture host. Defaults to `https://eu.i.posthog.com` in CI when omitted.
+
+The build works without PostHog variables; analytics and session replay simply
+do not initialize.
+
 ## License
 
 Code in this repository is licensed under the MIT License.
