@@ -123,19 +123,19 @@ const workflowLinks = [
             managing teams.
           </p>
           <div class="cta-row" aria-label="Contact and profile links">
-            <a class="button" href="mailto:me@erme2.com">
+            <a class="button" href="mailto:me@erme2.com" data-analytics-event="contact_email_clicked" data-analytics-label="Hero email">
               <span class="contact-icon" aria-hidden="true">@</span>
               <span>Email me</span>
             </a>
-            <a class="button secondary" href="https://github.com/erme2" target="_blank" rel="noopener noreferrer">
+            <a class="button secondary" href="https://github.com/erme2" target="_blank" rel="noopener noreferrer" data-analytics-event="outbound_github_clicked" data-analytics-label="Hero GitHub">
               <span class="contact-icon" aria-hidden="true">GH</span>
               <span>GitHub</span>
             </a>
-            <a class="button secondary" href="https://linkedin.com/in/arduinodigiosia" target="_blank" rel="noopener noreferrer">
+            <a class="button secondary" href="https://linkedin.com/in/arduinodigiosia" target="_blank" rel="noopener noreferrer" data-analytics-event="outbound_linkedin_clicked" data-analytics-label="Hero LinkedIn">
               <span class="contact-icon" aria-hidden="true">in</span>
               <span>LinkedIn</span>
             </a>
-            <a class="button secondary" href="/cv/arduino-di-giosia.pdf" target="_blank" rel="noopener noreferrer">
+            <a class="button secondary" href="/cv/arduino-di-giosia.pdf" target="_blank" rel="noopener noreferrer" data-analytics-event="cv_download_clicked" data-analytics-label="Hero CV">
               <span class="contact-icon" aria-hidden="true">CV</span>
               <span>Download CV (PDF)</span>
             </a>
@@ -164,7 +164,7 @@ const workflowLinks = [
               <strong>v1 in minutes</strong>
               <span>
                 first working version AI-generated from my CV, then iterated through issues, reviews, and deployments.
-                <a href="https://github.com/erme2/erme2.com" target="_blank" rel="noopener noreferrer">View repository</a>
+                <a href="https://github.com/erme2/erme2.com" target="_blank" rel="noopener noreferrer" data-analytics-event="project_repository_clicked" data-analytics-label="Signal board erme2.com">View repository</a>
               </span>
             </div>
           </div>
@@ -287,10 +287,10 @@ const workflowLinks = [
                     <p><strong>{project.label}</strong></p>
                     <p>{project.body}</p>
                     <div class="project-actions">
-                      <a class="project-link" href={project.href} target="_blank" rel="noopener noreferrer">View repository</a>
+                      <a class="project-link" href={project.href} target="_blank" rel="noopener noreferrer" data-analytics-event="project_repository_clicked" data-analytics-label={project.name}>View repository</a>
                       {
                         project.demoHref && (
-                          <a class="project-link project-link-live" href={project.demoHref} target="_blank" rel="noopener noreferrer">Live demo</a>
+                          <a class="project-link project-link-live" href={project.demoHref} target="_blank" rel="noopener noreferrer" data-analytics-event="pane_demo_clicked" data-analytics-label={project.name}>Live demo</a>
                         )
                       }
                     </div>
@@ -374,7 +374,7 @@ const workflowLinks = [
             <div class="workflow-links" aria-label="Workflow links">
               {
                 workflowLinks.map((link) => (
-                  <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" data-analytics-event={link.label === "Pane demo" ? "pane_demo_clicked" : "workflow_link_clicked"} data-analytics-label={link.label}>{link.label}</a>
                 ))
               }
             </div>
@@ -420,19 +420,19 @@ const workflowLinks = [
             <h2>Engineering judgment, code credibility, and management experience in one place.</h2>
           </div>
           <div class="contact-links">
-            <a href="mailto:me@erme2.com">
+            <a href="mailto:me@erme2.com" data-analytics-event="contact_email_clicked" data-analytics-label="Footer email">
               <span class="contact-icon" aria-hidden="true">@</span>
               <span>me@erme2.com</span>
             </a>
-            <a href="https://github.com/erme2" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/erme2" target="_blank" rel="noopener noreferrer" data-analytics-event="outbound_github_clicked" data-analytics-label="Footer GitHub">
               <span class="contact-icon" aria-hidden="true">GH</span>
               <span>github.com/erme2</span>
             </a>
-            <a href="https://linkedin.com/in/arduinodigiosia" target="_blank" rel="noopener noreferrer">
+            <a href="https://linkedin.com/in/arduinodigiosia" target="_blank" rel="noopener noreferrer" data-analytics-event="outbound_linkedin_clicked" data-analytics-label="Footer LinkedIn">
               <span class="contact-icon" aria-hidden="true">in</span>
               <span>linkedin.com/in/arduinodigiosia</span>
             </a>
-            <a href="/cv/arduino-di-giosia.pdf" target="_blank" rel="noopener noreferrer">
+            <a href="/cv/arduino-di-giosia.pdf" target="_blank" rel="noopener noreferrer" data-analytics-event="cv_download_clicked" data-analytics-label="Footer CV">
               <span class="contact-icon" aria-hidden="true">CV</span>
               <span>Download CV (PDF)</span>
             </a>
@@ -492,5 +492,6 @@ const workflowLinks = [
       activeSectionFromScroll();
       window.addEventListener("scroll", activeSectionFromScroll, { passive: true });
     </script>
+    <script src="../scripts/analytics.ts"></script>
   </body>
 </html>

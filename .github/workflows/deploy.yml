@@ -32,6 +32,9 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          PUBLIC_POSTHOG_KEY: ${{ vars.PUBLIC_POSTHOG_KEY || secrets.PUBLIC_POSTHOG_KEY }}
+          PUBLIC_POSTHOG_HOST: ${{ vars.PUBLIC_POSTHOG_HOST || secrets.PUBLIC_POSTHOG_HOST || 'https://eu.i.posthog.com' }}
         run: npm run build
 
       - name: Prepare SSH
