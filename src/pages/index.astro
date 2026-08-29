@@ -1,6 +1,5 @@
 ---
 import defaultThemeUrl from "../styles/global.css?url";
-import cheetahThemeUrl from "../styles/cheetah.css?url";
 import darkThemeUrl from "../styles/dark.css?url";
 
 const projects = [
@@ -80,14 +79,11 @@ const workflowLinks = [
       name="description"
       content="Arduino Di Giosia is an engineering leader and senior TypeScript and PHP engineer based in Nottingham."
     />
-    <link id="theme-stylesheet" rel="stylesheet" href={defaultThemeUrl} />
+    <link id="theme-stylesheet" rel="stylesheet" href={defaultThemeUrl} crossorigin="anonymous" />
     <title>Arduino Di Giosia | Engineering Leader & Senior Engineer</title>
-    <script is:inline define:vars={{ cheetahThemeUrl, darkThemeUrl }}>
-      const params = new URLSearchParams(window.location.search);
+    <script is:inline define:vars={{ darkThemeUrl }}>
       const stylesheet = document.getElementById("theme-stylesheet");
-      if (params.get("theme") === "cheetah") {
-        stylesheet?.setAttribute("href", cheetahThemeUrl);
-      } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         stylesheet?.setAttribute("href", darkThemeUrl);
       }
     </script>
