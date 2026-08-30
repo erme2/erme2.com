@@ -1,5 +1,0 @@
-<IfModule mod_headers.c>
-  <FilesMatch "\.css$">
-    Header set Access-Control-Allow-Origin "*"
-  </FilesMatch>
-</IfModule>

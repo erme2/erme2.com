@@ -1,13 +1,6 @@
 ---
-import defaultThemeUrl from "../styles/global.css?url";
-import darkThemeUrl from "../styles/dark.css?url";
-
-const siteUrl = Astro.site ?? new URL("https://erme2.com");
-const productionAssetUrl = (assetPath: string) => (
-  import.meta.env.PROD ? new URL(assetPath, siteUrl).toString() : assetPath
-);
-const defaultThemeHref = productionAssetUrl(defaultThemeUrl);
-const darkThemeHref = productionAssetUrl(darkThemeUrl);
+import defaultThemeCss from "../styles/global.css?raw";
+import darkThemeCss from "../styles/dark.css?raw";
 
 const projects = [
   {
@@ -86,14 +79,9 @@ const workflowLinks = [
       name="description"
       content="Arduino Di Giosia is an engineering leader and senior TypeScript and PHP engineer based in Nottingham."
     />
-    <link id="theme-stylesheet" rel="stylesheet" href={defaultThemeHref} crossorigin="anonymous" />
+    <style id="theme-stylesheet" set:html={defaultThemeCss}></style>
+    <style media="(prefers-color-scheme: dark)" set:html={darkThemeCss}></style>
     <title>Arduino Di Giosia | Engineering Leader & Senior Engineer</title>
-    <script is:inline define:vars={{ darkThemeHref }}>
-      const stylesheet = document.getElementById("theme-stylesheet");
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        stylesheet?.setAttribute("href", darkThemeHref);
-      }
-    </script>
   </head>
   <body>
     <header class="topbar">
