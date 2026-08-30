@@ -2,6 +2,13 @@
 import defaultThemeUrl from "../styles/global.css?url";
 import darkThemeUrl from "../styles/dark.css?url";
 
+const siteUrl = Astro.site ?? new URL("https://erme2.com");
+const productionAssetUrl = (assetPath: string) => (
+  import.meta.env.PROD ? new URL(assetPath, siteUrl).toString() : assetPath
+);
+const defaultThemeHref = productionAssetUrl(defaultThemeUrl);
+const darkThemeHref = productionAssetUrl(darkThemeUrl);
+
 const projects = [
   {
     name: "Yaup",
@@ -79,12 +86,12 @@ const workflowLinks = [
       name="description"
       content="Arduino Di Giosia is an engineering leader and senior TypeScript and PHP engineer based in Nottingham."
     />
-    <link id="theme-stylesheet" rel="stylesheet" href={defaultThemeUrl} crossorigin="anonymous" />
+    <link id="theme-stylesheet" rel="stylesheet" href={defaultThemeHref} crossorigin="anonymous" />
     <title>Arduino Di Giosia | Engineering Leader & Senior Engineer</title>
-    <script is:inline define:vars={{ darkThemeUrl }}>
+    <script is:inline define:vars={{ darkThemeHref }}>
       const stylesheet = document.getElementById("theme-stylesheet");
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        stylesheet?.setAttribute("href", darkThemeUrl);
+        stylesheet?.setAttribute("href", darkThemeHref);
       }
     </script>
   </head>
@@ -172,7 +179,7 @@ const workflowLinks = [
         </aside>
       </div>
 
-      <section id="profile">
+      <section id="profile" data-analytics-section="profile">
         <div class="site-shell">
           <div class="section-title">
             <h2>Engineer first. Manager when it matters.</h2>
@@ -211,7 +218,7 @@ const workflowLinks = [
         </div>
       </section>
 
-      <section id="experience">
+      <section id="experience" data-analytics-section="experience">
         <div class="site-shell">
           <div class="section-title">
             <h2>Recent work</h2>
@@ -262,7 +269,7 @@ const workflowLinks = [
         </div>
       </section>
 
-      <section id="projects">
+      <section id="projects" data-analytics-section="projects">
         <div class="site-shell">
           <div class="section-title">
             <h2>Personal projects</h2>
@@ -298,7 +305,7 @@ const workflowLinks = [
         </div>
       </section>
 
-      <section id="workflow">
+      <section id="workflow" data-analytics-section="workflow">
         <div class="site-shell">
           <div class="section-title">
             <h2>Open AI-assisted engineering workflow</h2>
@@ -378,7 +385,7 @@ const workflowLinks = [
         </div>
       </section>
 
-      <section id="skills">
+      <section id="skills" data-analytics-section="skills">
         <div class="site-shell">
           <div class="section-title">
             <h2>Core skills</h2>
@@ -409,7 +416,7 @@ const workflowLinks = [
         </div>
       </section>
 
-      <section id="contact">
+      <section id="contact" data-analytics-section="contact">
         <div class="site-shell contact-band">
           <div>
             <p class="eyebrow">Engineering Leadership · Delivery Discipline · AI-assisted Workflows</p>
