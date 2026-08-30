@@ -58,6 +58,9 @@ Session replay may be enabled for the initial experiment because the site is
 mostly static and has no sensitive product workflow. Keep it privacy-conscious:
 
 - Mask all inputs.
+- Preserve element attributes so class- and ID-based CSS selectors work in
+  replay. This is acceptable while the site remains a public static CV site
+  without forms, authentication, or private content.
 - Mask or block sensitive elements if any are added later.
 - Disable replay in PostHog settings or in code if it stops being useful.
 

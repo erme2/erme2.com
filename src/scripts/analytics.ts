@@ -101,7 +101,7 @@ if (posthogKey) {
     capture_pageleave: false,
     session_recording: {
       maskAllInputs: true,
-      maskAllElementAttributes: true
+      maskAllElementAttributes: false
     },
     loaded: (client) => {
       client.capture("$pageview", {
