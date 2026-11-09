@@ -3,9 +3,9 @@
 
 Usage:  python3 design/build/build_themes.py <theme> <fonts-dir> > /tmp/<theme>.jsonl
         figcraft-cli run /tmp/<theme>.jsonl --out design/<theme>/<theme>.figcraft
-Themes: christmas, terminal, blueprint, swiss. <fonts-dir> holds the @expo-google-fonts packages
+Themes: christmas, terminal, blueprint, swiss, arcade. <fonts-dir> holds the @expo-google-fonts packages
 (npm i @expo-google-fonts/ibm-plex-mono @expo-google-fonts/dm-serif-display @expo-google-fonts/vt323
- @expo-google-fonts/architects-daughter @expo-google-fonts/inter).
+ @expo-google-fonts/architects-daughter @expo-google-fonts/inter @expo-google-fonts/press-start-2p).
 
 The copy is the live site's, shortened in places to fit a mockup. Each theme changes typography, layout
 details and adds personal touches, not just colours (feedback: the current site reads as AI-generated).
@@ -138,8 +138,9 @@ def fonts(dirp, names):
         "vt323": ["400Regular/VT323_400Regular"],
         "architects": ["400Regular/ArchitectsDaughter_400Regular"],
         "inter": ["400Regular/Inter_400Regular", "500Medium/Inter_500Medium", "700Bold/Inter_700Bold", "900Black/Inter_900Black"],
+        "pixel": ["400Regular/PressStart2P_400Regular"],
     }
-    pkg = {"plex": "ibm-plex-mono", "dmserif": "dm-serif-display", "vt323": "vt323", "architects": "architects-daughter", "inter": "inter"}
+    pkg = {"plex": "ibm-plex-mono", "dmserif": "dm-serif-display", "vt323": "vt323", "architects": "architects-daughter", "inter": "inter", "pixel": "press-start-2p"}
     for n in names:
         for f in paths[n]:
             S("text.loadFont", {"path": f"{dirp}/@expo-google-fonts/{pkg[n]}/{f}.ttf"}, ref=False)
@@ -159,7 +160,7 @@ def page(name, bg):
 def christmas():
     PINE, PINE2, CREAM, RED, GOLD, SAGE = "#10281B", "#173A27", "#FBF5E6", "#C8312F", "#E0B84B", "#A9C2AE"
     SERIF, SERIF_I = ("DM Serif Display", "Regular"), ("DM Serif Display", "Italic")
-    pg = page("Christmas · Advent edition", PINE)
+    pg = page("Christmas · At home", PINE)
 
     # fairy-light string across the very top
     lights = F(pg, "Fairy lights", w=W, h=34)
@@ -188,7 +189,7 @@ def christmas():
     hero = F(pg, "Hero", layout="horizontal", w=W, padding=[72, PAD, 96, PAD], gap=72, crossAlign="center")
     left = F(hero, "Copy", layout="vertical", gap=22)
     grow(left)
-    T(left, "Advent edition · Nottingham, December 2026", 13, PLEX_B, GOLD, ls="6%", upper=True)
+    T(left, "Christmas at home · Nottingham, December 2026", 13, PLEX_B, GOLD, ls="6%", upper=True)
     T(left, "Hands-on\nengineering\nleadership.", 82, SERIF, CREAM, lh=84, fill=True)
     T(left, LEAD, 17, PLEX, SAGE, lh=28, fill=True)
     cta = F(left, "CTAs", layout="horizontal", gap=10, wrap=True, crossGap=10)
@@ -199,28 +200,39 @@ def christmas():
         c = F(b, "Icon", layout="horizontal", w=26, h=26, cornerRadius=13, fill=GOLD, mainAlign="center", crossAlign="center")
         T(c, ic, 11, PLEX_B, PINE)
         T(b, label, 14, PLEX_B, CREAM)
-    cal = F(hero, "Advent calendar", layout="vertical", w=500, gap=12, padding=22, fill=PINE2, cornerRadius=14,
-            stroke=GOLD, strokeWeight=1.5)
-    hd = F(cal, "Header", layout="horizontal", mainAlign="spaceBetween", crossAlign="center")
-    grow(hd)
-    T(hd, "Current signal", 18, SERIF_I, GOLD)
-    T(hd, "open a door ↓", 12, PLEX, SAGE)
-    open_days = {1: 0, 7: 1, 12: 2, 24: 3}
-    grid = F(cal, "Doors", layout="horizontal", gap=10, wrap=True, crossGap=10)
-    grow(grid)
-    order = [3, 17, 1, 9, 22, 7, 14, 5, 12, 20, 24, 11]
-    for d in order:
-        if d in open_days:
-            v, label = METRICS[open_days[d]]
-            door = F(grid, f"Day {d} (open)", layout="vertical", w=219, h=128, padding=14, gap=4, fill=CREAM, cornerRadius=8)
-            T(door, f"{d}", 12, PLEX_B, RED)
-            T(door, v, 26 if len(v) < 8 else 20, SERIF, PINE)
-            T(door, label, 11, PLEX, "#4A5A4F", fill=True, lh=15)
-        else:
-            door = F(grid, f"Day {d}", layout="horizontal", w=104, h=59, fill=PINE, cornerRadius=8, mainAlign="center",
-                     crossAlign="center", stroke="#3B5E48", strokeWeight=1)
-            T(door, f"{d}", 22, SERIF, GOLD if d % 2 else CREAM)
+    # a family house at night: the four numbers sit in its lit windows
+    art = F(hero, "House at night", w=500, h=470)
+    S("node.create", {"type": "ellipse", "parent": art, "x": 380, "y": 6, "width": 54, "height": 54, "select": False,
+                      "name": "Moon", "props": {"fill": "#F4EBD0"}}, ref=False)
+    F(art, "Snowy garden", w=500, h=60, x=0, y=410, fill="#F4F1E8", cornerRadius=30)
+    F(art, "Chimney", w=44, h=80, x=330, y=40, fill="#6E2A26")
+    vec(art, "M10 140 L250 30 L490 140 Z", fill="#2A1B17", stroke=GOLD, sw=2, name="Roof")
+    for i in range(9):
+        ellipse(art, 30 + i * 52, 128 - (abs(i - 4) * 0) , 10, [RED, GOLD, "#6FB98F", "#F4EBD0"][i % 4], name=f"roof light {i}")
+    body = F(art, "House", w=460, h=280, x=20, y=140, fill="#8B2E2A", stroke="#5E1D1A", strokeWeight=2)
+    spots = [(20, 26), (290, 26), (20, 150), (290, 150)]
+    for i, (v, label) in enumerate(METRICS):
+        x, y = spots[i]
+        win = F(body, f"Window {i + 1}", layout="vertical", gap=2, w=150, h=104, x=x, y=y, padding=[10, 12, 10, 12],
+                fill="#FFD98A", stroke="#F4F1E8", strokeWeight=4)
+        T(win, v, 22 if len(v) < 8 else 15, SERIF, "#3A1A10")
+        T(win, label, 10, PLEX, "#5A3A20", fill=True, lh=13)
+    F(body, "Door", w=80, h=140, x=190, y=140, fill="#2E6B48", stroke="#F4F1E8", strokeWeight=3)
+    S("node.create", {"type": "ellipse", "parent": body, "x": 208, "y": 162, "width": 44, "height": 44, "select": False,
+                      "name": "Wreath", "props": {"fill": None, "stroke": "#1F5136", "strokeWeight": 9}}, ref=False)
+    ellipse(body, 226, 196, 8, RED, name="Bow")
+    ellipse(body, 252, 220, 6, GOLD, name="Door knob")
+    T(art, "Current signal: all the lights are on", 16, SERIF_I, GOLD, x=0, y=0)
 
+    def tartan(name):
+        band = F(pg, name, w=W, h=18, fill="#9E2B25", clip=True)
+        for i in range(0, W, 36):
+            F(band, "v", w=10, h=18, x=i, y=0, fill="#1F4D33")
+            F(band, "v2", w=2, h=18, x=i + 18, y=0, fill=GOLD)
+        F(band, "h", w=W, h=4, x=0, y=7, fill="#1F4D33")
+        return band
+
+    tartan("Tartan 1")
     # experience as gift tags
     sec = F(pg, "Experience", layout="vertical", w=W, padding=[80, PAD, 80, PAD], gap=32, fill=CREAM)
     T(sec, "This year's gifts to the teams I worked with", 44, SERIF, PINE)
@@ -239,6 +251,7 @@ def christmas():
         for b in bullets:
             T(tag, f"✶  {b}", 13, PLEX, "#36423A", fill=True, lh=19)
 
+    tartan("Tartan 2")
     # projects as wrapped presents
     sec = F(pg, "Projects", layout="vertical", w=W, padding=[80, PAD, 80, PAD], gap=32)
     T(sec, "Under the tree: personal projects", 44, SERIF, CREAM)
@@ -590,8 +603,130 @@ def swiss():
     T(ft, "Set in Inter. Grid: 12 columns, 120 px margins.", 12, I5, GREY)
 
 
+# ================================================================ ARCADE: "Insert coin" (original; inspired by 80s bubble arcade games)
+def arcade():
+    BLACK, WHITE, RED, YELLOW, CYAN, MAGENTA, GREEN, BLUE = "#000000", "#FFFFFF", "#FF3B3B", "#FFE135", "#3CE7FF", "#FF4FD8", "#5CFF6B", "#3B6BFF"
+    PIX = ("Press Start 2P", "Regular")
+    pg = page("Arcade · Insert coin", BLACK)
+
+    def bricks(parent, width, color, rows=2, name="Bricks"):
+        b = F(parent, name, w=width, h=rows * 20)
+        for r in range(rows):
+            off = 0 if r % 2 == 0 else -20
+            for i in range(off, width, 40):
+                x0 = max(i, 0)
+                w = min(38, i + 38 - x0, width - x0)
+                if w > 2:
+                    F(b, "brick", w=w, h=18, x=x0, y=r * 20, fill=color)
+        return b
+
+    def bubble(parent, x, y, d, color, value=None, label=None, fs=22):
+        bb = F(parent, f"Bubble {value or ''}", w=d, h=d, x=x, y=y)
+        S("node.create", {"type": "ellipse", "parent": bb, "x": 0, "y": 0, "width": d, "height": d, "select": False, "name": "skin",
+                          "props": {"fill": color, "opacity": 0.16}}, ref=False)
+        S("node.create", {"type": "ellipse", "parent": bb, "x": 0, "y": 0, "width": d, "height": d, "select": False, "name": "rim",
+                          "props": {"fill": None, "stroke": color, "strokeWeight": 3}}, ref=False)
+        S("node.create", {"type": "ellipse", "parent": bb, "x": d * 0.2, "y": d * 0.14, "width": d * 0.16, "height": d * 0.1,
+                          "select": False, "name": "shine", "props": {"fill": WHITE, "opacity": 0.85, "rotation": -30}}, ref=False)
+        if value:
+            T(bb, value, fs, PIX, WHITE, x=0, y=d * 0.36, w=d, align="center")
+            T(bb, label, 11, PLEX_B, color, x=d * 0.14, y=d * 0.36 + fs + 16, w=d * 0.72, align="center")
+        return bb
+
+    # HUD
+    hud = F(pg, "HUD", layout="horizontal", w=W, h=84, padding=[0, PAD, 0, PAD], mainAlign="spaceBetween", crossAlign="center")
+    for top, val, c in (("1UP", "000020", RED), ("HI-SCORE", "2026", RED), ("2UP", "INSERT COIN", CYAN)):
+        col = F(hud, top, layout="vertical", gap=8, crossAlign="center")
+        T(col, top, 14, PIX, c)
+        T(col, val, 16, PIX, WHITE if top != "2UP" else YELLOW)
+    menu = F(pg, "Menu", layout="horizontal", w=W, padding=[0, PAD, 0, PAD], gap=34)
+    for i, l in enumerate(("PROFILE", "EXPERIENCE", "PROJECTS", "WORKFLOW", "CONTACT")):
+        T(menu, ("▶ " if i == 0 else "  ") + l, 12, PIX, YELLOW if i == 0 else WHITE)
+
+    # hero
+    hero = F(pg, "Hero", layout="horizontal", w=W, padding=[56, PAD, 24, PAD], gap=40, crossAlign="center")
+    left = F(hero, "Copy", layout="vertical", gap=24)
+    grow(left)
+    T(left, "ROUND 1  ·  ARDUINO DI GIOSIA", 13, PIX, GREEN)
+    h = F(left, "Headline", layout="vertical", gap=14)
+    for word, c in (("HANDS-ON", YELLOW), ("ENGINEERING", CYAN), ("LEADERSHIP!", MAGENTA)):
+        T(h, word, 44, PIX, c)
+    T(left, LEAD, 16, PLEX, "#D6D6E6", lh=27, fill=True)
+    cta = F(left, "Buttons", layout="horizontal", gap=16, wrap=True, crossGap=16)
+    grow(cta)
+    for i, (_, label) in enumerate(CTAS):
+        c = [RED, BLUE, BLUE, BLUE][i]
+        b = F(cta, label, layout="horizontal", padding=[14, 18, 14, 18], fill=c, stroke=WHITE if i == 0 else BLACK, strokeWeight=3)
+        T(b, ("PRESS START: " if i == 0 else "") + label.upper(), 11, PIX, WHITE)
+    art = F(hero, "Bubbles", w=520, h=520)
+    bubble(art, 20, 10, 230, CYAN, METRICS[0][0], METRICS[0][1], fs=34)
+    bubble(art, 270, 60, 210, MAGENTA, METRICS[1][0], METRICS[1][1], fs=26)
+    bubble(art, 60, 260, 200, GREEN, METRICS[2][0], METRICS[2][1], fs=24)
+    bubble(art, 290, 290, 200, YELLOW, "v1", "in minutes: first version AI-generated, then iterated", fs=30)
+    for x, y, d in ((470, 20, 28), (0, 220, 22), (250, 470, 18), (500, 240, 16)):
+        bubble(art, x, y, d, WHITE)
+    plat = F(pg, "Platform", layout="horizontal", w=W, padding=[0, PAD, 0, PAD])
+    bricks(plat, CW, MAGENTA, rows=2)
+
+    # high scores (experience)
+    sec = F(pg, "High scores", layout="vertical", w=W, padding=[72, PAD, 56, PAD], gap=28, crossAlign="center")
+    T(sec, "BEST PLAYERS · EXPERIENCE", 22, PIX, RED)
+    tbl = F(sec, "Table", layout="vertical", gap=26, w=1000)
+    head = F(tbl, "Head", layout="horizontal", gap=24)
+    grow(head)
+    for t, w in (("RANK", 120), ("YEARS", 260), ("ROLE", None)):
+        x = T(head, t, 12, PIX, WHITE, w=w)
+        if not w:
+            grow(x)
+    for i, (title, co, place, dates, bullets) in enumerate(ROLES):
+        c = [YELLOW, CYAN, MAGENTA][i]
+        row = F(tbl, co, layout="horizontal", gap=24)
+        grow(row)
+        T(row, ["1ST", "2ND", "3RD"][i], 16, PIX, c, w=120)
+        T(row, dates.replace(" – ", "-").upper(), 11, PIX, c, w=260)
+        r = F(row, "Role", layout="vertical", gap=8)
+        grow(r)
+        T(r, f"{title.upper()} · {co.upper()}", 13, PIX, c, fill=True, lh=20)
+        T(r, " · ".join(bullets), 13, PLEX, "#BFC3D9", fill=True, lh=20)
+
+    # stage select (projects)
+    sec = F(pg, "Stage select", layout="vertical", w=W, padding=[40, PAD, 64, PAD], gap=28)
+    T(sec, "SELECT STAGE · PROJECTS", 22, PIX, CYAN)
+    grid = F(sec, "Stages", layout="horizontal", gap=24)
+    grow(grid)
+    gems = [RED, YELLOW, GREEN, MAGENTA]
+    for i, (name, label, body) in enumerate(PROJECTS):
+        card = F(grid, name, layout="vertical", gap=12, padding=20, stroke=gems[i], strokeWeight=4)
+        grow(card)
+        top = F(card, "Top", layout="horizontal", mainAlign="spaceBetween", crossAlign="center")
+        grow(top)
+        T(top, f"ROUND {i + 2}", 11, PIX, gems[i])
+        gem = F(top, "Item", w=24, h=24)
+        for (gx, gy) in ((8, 0), (0, 8), (8, 8), (16, 8), (8, 16)):
+            F(gem, "px", w=8, h=8, x=gx, y=gy, fill=gems[i])
+        T(card, name.upper(), 18, PIX, WHITE)
+        T(card, label, 12, PLEX_B, gems[i])
+        T(card, body, 13, PLEX, "#BFC3D9", fill=True, lh=19)
+    plat = F(pg, "Platform 2", layout="horizontal", w=W, padding=[0, PAD, 0, PAD])
+    bricks(plat, CW, CYAN, rows=1)
+
+    # continue (contact)
+    ct = F(pg, "Continue", layout="vertical", w=W, padding=[72, PAD, 56, PAD], gap=26, crossAlign="center")
+    T(ct, "CONTINUE?", 40, PIX, YELLOW)
+    T(ct, "9", 72, PIX, RED)
+    T(ct, "INSERT COIN TO TALK ENGINEERING", 13, PIX, WHITE)
+    lk = F(ct, "Links", layout="horizontal", gap=20, wrap=True, crossGap=16, mainAlign="center")
+    for i, (_, label) in enumerate(CONTACT):
+        b = F(lk, label, layout="horizontal", padding=[12, 16, 12, 16], stroke=[RED, CYAN, MAGENTA, GREEN][i], strokeWeight=3)
+        T(b, label, 14, PLEX_B, WHITE)
+    ft = F(pg, "Footer", layout="horizontal", w=W, padding=[24, PAD, 32, PAD], mainAlign="spaceBetween")
+    T(ft, "© 2026 ARDUINO DI GIOSIA", 11, PIX, "#8A8FA8")
+    T(ft, "CREDIT 01", 11, PIX, YELLOW)
+
+
 THEMES = {"christmas": (christmas, ["plex", "dmserif"]), "terminal": (terminal, ["plex", "vt323"]),
-          "blueprint": (blueprint, ["plex", "architects"]), "swiss": (swiss, ["inter"])}
+          "blueprint": (blueprint, ["plex", "architects"]), "swiss": (swiss, ["inter"]),
+          "arcade": (arcade, ["plex", "pixel"])}
 
 if __name__ == "__main__":
     theme, fdir = sys.argv[1], sys.argv[2]
